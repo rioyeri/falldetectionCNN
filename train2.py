@@ -23,7 +23,7 @@ import imutils
 import os
 #import tensorflow as tf
 
-def NNTF(x, y, x_test=None, y_test=None,save_model=None):
+def training_NNTF(x, y, x_test=None, y_test=None,save_model=None):
     LR = 0.0001
     EP = 50
     input_dim = x.shape[1:]
@@ -86,7 +86,7 @@ def countValue(actual_val,pred_val,TP,predTrueVal,actTrueVal,predFalseVal,actFal
     return TP,predTrueVal,actTrueVal,predFalseVal,actFalseVal
 
 
-def CNNTF(x, y, x_test=None, y_test=None,save_model=None):
+def training_CNNTF(x, y, x_test=None, y_test=None,save_model=None):
     LR = 0.0001
     EP = 50
     input_dim = x.shape[1:]
@@ -508,12 +508,6 @@ y_train = dataset.item().get('y_train')
 x_test = dataset.item().get('x_test')
 y_test = dataset.item().get('y_test')
 
-
-#print(Y)
-#print(len(X))
-#print(x.shape)
-#print(y.shape)
-
 #x_train,y_train,x_val,y_val,x_test,y_test = splitdataset() #1
 x_train,y_train, x_val, y_val = splitdataset2(x_train, y_train)  #2
 
@@ -522,34 +516,9 @@ print("y_train : ",len(y_train))
 print("y_val : ",len(y_val))
 print("y_test : ",len(y_test))
 
-"""
-x_train = [[x_train[i]] for i in range(len(x_train))]
-x_train = np.asarray(x_train)
 
+#training_NNTF(x=x_train, y=y_train, x_test=x_val, y_test=y_val, save_model=True) #training with NN model
+training_CNNTF(x=x_train, y=y_train, x_test=x_val, y_test=y_val, save_model=True) #training with CNN model
 
-x_val = [[x_val[i]] for i in range(len(x_val))]
-x_val = np.asarray(x_val)
-
-
-x_test = [[x_test[i]] for i in range(len(x_test))]
-x_test = np.asarray(x_test)
-"""
-"""
-print(x_train.shape)
-print(x_train.shape[0:])
-print(x_train.shape[1:])
-print(x_train.shape[2:])
-print(x_train.shape[3:])
-print()
-print(x_train.shape[:0])
-print(x_train.shape[:1])
-print(x_train.shape[:2])
-print(x_train.shape[:3])
-print()
-"""
-
-#NNTF(x=x_train, y=y_train, x_test=x_val, y_test=y_val, save_model=True)
-CNNTF(x=x_train, y=y_train, x_test=x_val, y_test=y_val, save_model=True)
-
-#testing(x_test, y_test, loadmodel='newmodel_NeuralNet_soft_bincross_lr0.0001_ep50_140dt_6fr_4fc4_2.h5')
-#testing(x_test, y_test, loadmodel='newmodel_CNNTF_sigm_catcross_lr0.0001_ep50_140dt_6fr_1conv_4fc4_2.h5')
+#testing(x_test, y_test, loadmodel='newmodel_NeuralNet_soft_bincross_lr0.0001_ep50_140dt_6fr_4fc4_2.h5') #testing with NN's model
+testing(x_test, y_test, loadmodel='newmodel_CNNTF_sigm_catcross_lr0.0001_ep50_140dt_6fr_1conv_4fc4_2.h5') #testing with CNN's model
