@@ -1,0 +1,3 @@
+The original dataset i took from http://fenix.univ.rzeszow.pl/~mkepski/ds/uf.html
+
+but in my research, i used https://drive.google.com/drive/folders/1W0462zRmM0zMUmpVNtnpQhT0Yizu-YTR?usp=sharing
